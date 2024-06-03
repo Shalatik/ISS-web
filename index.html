@@ -1,0 +1,299 @@
+<!--
+  -- File: index.html
+  -- Author: Milan Hrabovský (xhrabo15), Simona Češková (xcesko00)
+  -- Subject: ITU
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <title>Main Page</title>
+
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+</head>
+<body>
+<div id="overlay" class="ease"></div>
+
+<div id="long">
+    <nav id="navigation-desktop">
+        <div class="content">
+            <ul id="bar_list">
+                <li><a href="#">Hlavní stránka</a></li>
+                <li><a href="interactive_map.html">Mapa závad</a></li>
+                <li><a href="index.html#about_ref">O nás</a></li>
+                <li><a href="index.html#map_ref">Nahlásit problém</a></li>
+                <li><a href="index.html#stats_ref">Štatistiky</a></li>
+                <li><a href="index.html#contact_ref">Kontakty</a></li>
+                <button class="hide_btn" id="logout_btn" type="submit" onclick="logout()">Odhlásit se</button>
+                <button class="hide_btn" id="profile_btn" type="submit" onclick="location.href='user_profile.html'">
+                    Zobrazit
+                    profil
+                </button>
+                <button class="hide_btn" id="register_btn" type="submit" data-modal-target="#register_form">Registrovať
+                    sa
+                </button>
+                <button class="hide_btn" id="login_btn" type="submit" data-modal-target="#login_form">Přihlásit se
+                </button>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="nav-place">
+    <nav id="navigation-desktop2">
+        <div class="content">
+            <div id="bar_list2">
+                <a href="#" class="active">Hlavní stránka</a>
+                <a href="interactive_map.html">Mapa závad</a>
+                <a href="index.html#about_ref">O nás</a>
+                <a href="index.html#map_ref">Nahlásit problém</a>
+                <a href="index.html#stats_ref">Štatistiky</a>
+                <a href="index.html#contact_ref">Kontakty</a>
+                <button class="hide_btn" id="profile_btn2" type="submit"
+                        onclick="location.href='user_profile.html'">Zobrazit profil
+                </button>
+                <button class="hide_btn" id="logout_btn2" type="submit" onclick="logout()">Odhlásit se</button>
+                <button class="hide_btn" id="register_btn2" type="submit"
+                        data-modal-target="#register_form">Registrovať sa
+                </button>
+                <button class="hide_btn" id="login_btn2" type="submit" data-modal-target="#login_form">Přihlásit se
+                </button>
+            </div>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="showMobileNav()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </nav>
+</div>
+
+<div id="login_id">
+    <div class="modal ease" id="login_form">
+        <div class="modal-header">
+            <div class="title">Prosím prihláste sa</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="form_login">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email"><br>
+                <label for="password">Heslo</label>
+                <input type="password" name="password" id="password" placeholder="Heslo"><br>
+                <button type="submit" data-close-button onclick="login()">Přihlásit se</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="register_id">
+    <div class="modal ease" id="register_form">
+        <div class="modal-header">
+            <div class="title">Registrácia</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="form_register">
+                <label id="name_lab" for="name_reg">Meno</label>
+                <input type="text" name="name_reg" id="name_reg" placeholder="Meno">
+                <label id="surename_lab" for="surname_reg">Priezvisko</label>
+                <input type="text" name="surname_reg" id="surname_reg" placeholder="Priezvisko">
+                <label id="address_lab" for="address_reg">Addresa</label>
+                <input type="text" name="address" id="address_reg" placeholder="Addresa">
+                <label id="date_lab" for="date_reg">Dátum narodenia</label>
+                <input type="date" name="date_reg" id="date_reg" placeholder="Dátum narodenia">
+                <label id="email_lab" for="email_reg">Email</label>
+                <input type="email" name="email" id="email_reg" placeholder="Email">
+                <label id="pwd_lab" for="password_reg">Heslo</label>
+                <input type="password" name="password" id="password_reg" placeholder="********">
+                <label id="pwd2_lab" for="password_reg2">Potvrdenie hesla</label>
+                <input type="password" name="password" id="password_reg2" placeholder="********">
+                <div id="news">
+                    <input id="news_reg" type="checkbox">
+                    <label id="news_lab" for="news_reg">Chci dostávat novinky o mých nahlášených ticketech.</label>
+                </div>
+                <button id="reg_btn" data-close-button type="submit">Registrovať sa</button>
+            </form>
+        </div>
+    </div>
+</div>
+<header>
+    <div id="slideshow">
+        <div class="content">
+            <img class="slide anim_fade" src="src/images/fountain.png">
+            <img class="slide anim_fade" src="src/images/garden.png">
+            <img class="slide anim_fade" src="src/images/observatory.png">
+            <img class="slide anim_fade" src="src/images/park.png">
+            <div id="dots">
+                <span class="dot" onclick="currentDiv(1)"></span>
+                <span class="dot" onclick="currentDiv(2)"></span>
+                <span class="dot" onclick="currentDiv(3)"></span>
+                <span class="dot" onclick="currentDiv(4)"></span>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <section id="about">
+        <a class="anchor" id="about_ref"></a>
+        <div class="content">
+            <h1>O nás</h1>
+            <p>Tento portál bol vytvorený za účel zlepšenia a spríjemnenia života v Brne. Ak chceme, aby sme žili v
+                čistom a peknom meste, musíme každý k tomu priložiť ruku. Tak neváhaj a pridaj sa k tisícom ďalších
+                občanov Brna, ktorý nám pomocou nahlasovania problémov pomáhajú udržiavať ulice čisté a mestské
+                služby/objekty funkčné.</p>
+        </div>
+    </section>
+    <section id="map">
+        <a class="anchor" id="map_ref"></a>
+        <div class="content">
+            <h1>Mapa závad</h1>
+            <div id="mapid">
+                <span id="zoom" onclick="location.href='interactive_map.html'" class="material-symbols-rounded">zoom_out_map</span>
+                <div id="map_div">
+                    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+                            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+                    <script src="src/interactive_map.js"></script>
+                </div>
+            </div>
+            <button id="submit_btn" type="button" data-modal-target="#login_register_form">Nahlásiť problém</button>
+            <div id="login_register">
+                <div class="modal ease" id="login_register_form">
+                    <div class="modal-header">
+                        <div class="title">Prosím prihláste sa</div>
+                        <button data-close-button class="close-button">&times</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form_login_register">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email_lr" placeholder="Email"><br>
+                            <label for="password">Heslo</label>
+                            <input type="password" name="password" id="password_lr" placeholder="Heslo"><br>
+                            <button type="submit" data-close-button onclick="login()">Přihlásit se</button>
+                            <p class="nebo">nebo</p>
+                            <button id="or_register" type="button" data-modal-target="#register_form" data-close-button
+                                    class="close-button">Registrovat se
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p>Narazil/a si pri prechádzke na niečo čo by tebe, alebo tvojím spoluobčanom vadilo ? Ak áno, nahlás to a
+                my na to nasadíme naších najlepších technikov, ktorý sa postarajú o to, aby si sa v Brne cítil/a
+                píjemne!</p>
+        </div>
+    </section>
+    <section id="stats">
+        <a class="anchor" id="stats_ref"></a>
+        <div class="content">
+            <h1>Štatistiky</h1>
+            <div id="statid">
+                <div class="box_size" data-modal-target="#graph1">
+                    <p class="alignleft"><strong>Vyřešených případů do jednoho měsíce:</strong></p>
+                    <p class="alignright">80%</p>
+                    <div class="bcgr_loading">
+                        <div id="line_1"></div>
+                    </div>
+                </div>
+                <div class="box_size" data-modal-target="#graph2">
+                    <p class="alignleft"><strong>Uživatelé, kteří nahlašují opakovaně:</strong></p>
+                    <p class="alignright">60%</p>
+                    <div class="bcgr_loading">
+                        <div id="line_2"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="graph1_i">
+                <div class="modal ease" id="graph1">
+                    <div class="modal-header">
+                        <div class="title">Graf vyřešených případů:</div>
+                        <button data-close-button class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="graph_p1" src="src/pictures/graph1.png" title="graph1">
+                    </div>
+                </div>
+                <div id="graph2_i">
+                    <div class="modal ease" id="graph2">
+                        <div class="modal-header">
+                            <div class="title">Graf uživatelú, kteří nahlašují opakovaně</div>
+                            <button data-close-button class="close-button">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <img id="graph_p2" src="src/pictures/graph2.png" title="graph2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <a class="anchor" id="contact_ref"></a>
+        <div class="content">
+            <h1>Kontakt</h1>
+            <div id="contact_div">
+                <label for="email_"></label>
+                <a id="email_" href="mailto:brno-mesto@brno.cz">brno-mesto@brno.cz</a><br>
+                <label id="milan" for="mobile">Milan Hrabovský (xhrabo15)</label>
+                <a id="mobile">+420 948 000 000 </a><br>
+                <label id="simona" for="phone">Simona Češková (xcesko00)</label>
+                <a id="phone">+033/00 000 000</a><br>
+                <label id="julius" for="address">Jakub Július Šmýkal (xsmyka01)</label>
+                <a id="address">Brno 123/4, 612 00, Česká republika</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ---------------CHATBOT------------------
+  -- Author: Simona Češková (xcesko00)
+-->
+<div id="chatbot">
+    <img type="button" data-modal-target="#chatbot_wrapper" class="chatbot_img" src="src/pictures/message.png"
+         alt="chatbot">
+</div>
+<div class="modal ease" id="chatbot_wrapper">
+    <div class="modal-header" id="title_bot">
+        <span>Chatbot chytré město</span>
+    </div>
+    <div class="modal-body">
+        <div id="chatbot_body">
+            <div class="messages">
+                <blockquote>
+                    <span>Chcete pomoct? Jsme tu pro Vás!</span>
+                </blockquote>
+                <figure>
+                    <img src="src/pictures/bot.png" alt="bot">
+                </figure>
+            </div>
+            <div id="getMessage"></div>
+        </div>
+    </div>
+    <form id="chat_form_form" method="GET">
+        <div id="chat_form">
+            <div id="texarea_div">
+                <textarea maxlength="20" name="comment_text" id="contact_message" placeholder="Napiště zprávu..."
+                          required></textarea>
+            </div>
+            <div id="sendPaper">
+                <button onclick="sendMessage(this.form)" id="contact-submit" class="contact-submit" type="submit"><i class="fa fa-send-o"></i></button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!-- ---------------CHATBOT------------------ -->
+<div id="up">
+    <a href="#"><span class="material-symbols-rounded">expand_less</span></a>
+</div>
+<footer>
+    <div id="license">
+        <p><b>GoalDiggers</b> | Copyright 2022</p>
+    </div>
+</footer>
+<script src="src/main_page.js"></script>
+</body>
+<script src="src/login.js"></script>
+</html>

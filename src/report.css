@@ -1,0 +1,501 @@
+* {
+    list-style: none;
+}
+
+main {
+    margin-top: 150px;
+    min-height: calc(100vh - 150px - 45px);
+
+}
+
+h2 {
+    font-size: 40px;
+    text-transform: uppercase;
+    color: black;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+*,
+*:focus,
+*:hover {
+    outline: none;
+}
+
+ul {
+    padding: 0;
+}
+
+/* ******************************** BASIC ***************************** */
+/* ******************************** 1/5 ***************************** */
+
+#services h3 {
+    margin-top: 40px;
+    color: black;
+}
+
+#services {
+    min-width: 300px;
+}
+
+#services .content > div {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 30px;
+    justify-content: center;
+    justify-items: center;
+}
+
+#services {
+    text-align: center;
+}
+
+.services-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #d28d8d;
+    margin: 20px auto auto;
+    padding: 5px;
+}
+
+.services-card {
+    font-size: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 170px;
+    box-shadow: 0 0 10px 0 #bfbfbf;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.services-card:hover {
+    box-shadow: 0 0 10px 0 var(--lightRed);
+    transition: 200ms ease-in-out;
+cursor: pointer;
+}
+
+.services-card img:first-child {
+    display: block;
+}
+
+.services-card:hover img:first-child {
+    display: none;
+    transition: 200ms ease-in-out;
+    background-color: var(--lightRed);
+}
+
+.services-card img:last-child {
+    display: none;
+}
+
+.services-card:hover img:last-child {
+    background-color: var(--lightRed);
+    transition: 200ms ease-in-out;
+    display: block;
+    cursor: pointer;
+}
+
+/* ******************************** 1/5 ***************************** */
+/* ******************************* BUTTON ************************** */
+
+#buttonProfileTickets {
+    width: 300px;
+    background-color: var(--darkRed);
+    padding: 16px;
+    font-size: 14pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#buttonProfileTickets:hover {
+    background-color: var(--lightRed);
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+
+#services .only_four .content > div {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+    justify-content: center;
+    justify-items: center;
+}
+
+/* ******************************* BUTTON ************************** */
+/* ******************************** 1/5 ***************************** */
+/* ******************************** 2/5 ***************************** */
+
+#photo_mode {
+    display: none;
+}
+
+#aa {
+}
+
+#aa img {
+    max-width: 50%;
+}
+
+.custom-file-upload {
+    border-radius: 10px;
+    display: inline-block;
+    padding: 20px;
+    cursor: pointer;
+    width: 100px;
+    color: white;
+    text-align: center;
+    background-color: var(--darkRed);
+    font-size: 14pt;
+}
+
+.custom-file-upload:hover {
+    background-color: var(--lightRed);
+}
+
+.photo_mode_h {
+    color: black;
+    font-size: 20px;
+}
+
+.photo_mode_img {
+    padding-bottom: -10px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+/* ******************************** 2/5 ***************************** */
+/* ******************************** 3/5 ***************************** */
+
+.submit-btn {
+    width: 300px;
+    padding: 16px;
+    font-size: 14pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: var(--darkRed);
+    color: white;
+    max-width: 300px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+.submit-btn:hover {
+    background-color: green;
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+}
+
+#map_div {
+    margin-top: 150px;
+    margin-bottom: -50px;
+}
+
+/* ******************************** 3/5 ***************************** */
+/* ******************************** 4/5 ***************************** */
+
+#submit-btn {
+    margin-top: 20px;
+}
+
+#form_4 {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    width: 70%;
+    margin: auto;
+}
+
+#form_4 input:not([type="submit"]) {
+    margin-bottom: 20px;
+    height: 40px;
+    padding-left: 15px;
+}
+
+#form_4 textarea {
+    resize: none;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+#4_textarea {
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+#form_4 .submit-btn {
+    justify-self: center;
+}
+
+/* ******************************** 4/5 ***************************** */
+/* ******************************** 5/5 ***************************** */
+
+#last_report_page h3{
+    text-align: center;
+}
+
+#back {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* ********************************5/5 ***************************** */
+/* ************************* POPUPS LEAVE REPORT ************************ */
+
+#form_hl_link input {
+    background-color: lightgrey;
+    border: none;
+    margin: 10px;
+    height: 40px;
+    width: 90%;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: larger;
+}
+
+#form_hl_link input {
+    background-color: lightgrey;
+    border: none;
+    margin: 10px;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: larger;
+}
+
+.link input:focus, #form_hl_link input:not(#news_reg):focus {
+    outline: var(--darkRed) solid 3px;
+}
+
+.link label, #form_hl_link label {
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+}
+
+.link button, #form_hl_link button {
+    margin: 15px;
+    height: 42px;
+    padding-left: -10px;
+    background-color: var(--darkRed);
+    color: var(--white);
+    border: none;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+.link button:hover, #form_hl_link button:hover {
+    transition: 200ms ease-in-out;
+    color: white;
+    cursor: pointer;
+}
+
+#form_hl_link input:focus, #form_hl_link input:not(#news_reg):focus {
+    outline: var(--darkRed) solid 3px;
+}
+
+#form_hl_link label, #form_hl_link label {
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: x-large;
+}
+
+#form_hl_link button, #form_hl_link button {
+    margin: 15px;
+    height: 40px;
+    width: 90%;
+    background-color: var(--darkRed);
+    color: var(--white);
+    border: none;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+#form_hl_link button:hover, #form_hl_link button:hover {
+    background-color: var(--lightRed);
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+}
+
+.modal-header .title {
+    margin-right: 50px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/* ************************* POPUPS LEAVE REPORT ************************ */
+/* ************************* MEDIA ************************ */
+
+@media only screen and (max-width: 1650px) {
+    #map_div {
+        height: 700px;
+        width: 800px;
+        margin: auto;
+        transition: 200ms ease-in-out;
+
+    }
+
+    #photo_mode {
+        max-height: 300px;
+        max-width: 400px;
+        height: 40%;
+        width: 40%;
+        transition: 200ms ease-in-out;
+    }
+
+}
+
+@media only screen and (max-width: 750px) {
+    #services .content > div {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 30px;
+        justify-content: center;
+        justify-items: center;
+        transition: 200ms ease-in-out;
+
+    }
+
+    #photo_mode {
+        max-height: 300px;
+        max-width: 100px;
+        height: 40%;
+        width: 40%;
+        color: #a62e2e;
+        transition: 200ms ease-in-out;
+
+    }
+
+    #map_div {
+        height: 300px;
+        width: 300px;
+        margin: auto;
+        transition: 200ms ease-in-out;
+    }
+
+    .all {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #tuPlaceNav {
+        display: none;
+    }
+
+    #user_profile {
+        grid-row: 1;
+
+    }
+
+    .profile img {
+        visibility: hidden;
+    }
+
+    .wrapper ul li a {
+        color: black;
+        background-color: var(--lightRed);
+        display: inline;
+    }
+
+    #mobileUserNavDiv h3, #mobileUserNavDiv button {
+        color: black;
+    }
+
+    #mobileUserNavDiv {
+        max-width: 750px;
+        height: 50px;
+        width: 100%;
+        /*display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        */
+    }
+
+    #mobileUserNavDiv ul, #mobileUserNavDiv li {
+        display: inline;
+        position: relative;
+    }
+
+    /* ******************** NAV ********************* */
+    #navigation-desktop {
+        display: None;
+    }
+
+    #nav-place {
+        display: block;
+        visibility: visible;
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+    }
+
+    #bar_list2 {
+        display: none;
+    }
+
+    #navigation-desktop2 {
+        position: relative;
+        overflow: hidden;
+        z-index: 7000;
+    }
+
+    #nav-place {
+        overflow: hidden;
+    }
+
+    #edit_profile_button2:hover, #profile_button2:hover {
+        transition: 200ms ease-in-out;
+        background-color: var(--lightRed) !important;
+    }
+
+    #nav-place a, #nav-place button {
+        padding: 14px 16px;
+        text-decoration: none;
+        z-index: 7000;
+        font-size: 17px;
+        display: block;
+    }
+
+    #nav-place a.icon {
+        background: rgba(168, 175, 185, 0);
+        display: block;
+        right: 0;
+        top: 0;
+    }
+
+    #navigation-desktop2 .icon {
+        font-size: 25px;
+    }
+
+    #edit_profile form .container{
+        width: 650px;
+    }
+    .form-group input{
+        width: 200px;
+    }
+    #ticket_filters{
+        margin-left: 0px;
+        width: 650px;
+    }
+    #price .main_table{
+        width: 650px;
+        background-color: #ddd;
+        margin-left: -30px;
+    }
+    /* ******************* NAV ******************* */
+}
+/* ************************* MEDIA ************************ */

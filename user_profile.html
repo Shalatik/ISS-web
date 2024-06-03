@@ -1,0 +1,131 @@
+<!--
+  -- File: user_profile.html
+  -- Author: Simona Češková (xcesko00)
+  -- Subject: ITU
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User profile</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/user_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<header id="header">
+</header>
+
+<div id="long">
+    <nav id="navigation-desktop">
+        <div class="content">
+            <ul id="bar_list">
+                <li><a href="index.html">Hlavní stránka</a></li>
+                <li><a href="interactive_map.html">Mapa závad</a></li>
+                <li><a href="index.html#about_ref">O nás</a></li>
+                <li><a href="index.html#map_ref">Nahlásit problém</a></li>
+                <li><a href="index.html#stats_ref">Štatistiky</a></li>
+                <li><a href="index.html#contact_ref">Kontakty</a></li>
+                <button type="submit" onclick="log_out()">Odhlásit se</button>
+                <button id="show_btn" type="submit" onclick="loadTickets()">Zobrazit profil</button>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="nav-place">
+    <nav id="navigation-desktop2">
+        <div class="content">
+            <div id="bar_list2">
+                <a href="index.html" class="active">Hlavní stránka</a>
+                <a href="interactive_map.html">Mapa závad</a>
+                <a href="index.html#about_ref">O nás</a>
+                <a href="index.html#map_ref">Nahlásit problém</a>
+                <a href="index.html#stats_ref">Štatistiky</a>
+                <a href="index.html#contact_ref">Kontakty</a>
+                <button onclick="loadTickets()" id="profile_button2">Moje nahlášené závady</button>
+                <button onclick="editProfile()" id="edit_profile_button2">Změna profilu</button>
+                <button type="submit" onclick="loadTickets()">Zobrazit profil</button>
+                <button type="submit" onclick="log_out()">Odhlásit se</button>
+            </div>
+        </div>
+        <a href="javascript:void(0);" class="icon" onClick="showMobileNav()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </nav>
+</div>
+
+<main>
+    <div class="all content">
+        <div id="tuPlaceNav">
+            <div id="side_bar">
+                <div class="content">
+                    <div class="wrapper">
+
+                        <div class="profile">
+                            <img id="profile_pic" src="" alt="Profile picture">
+                        </div>
+                        <ul id="profile_ul">
+                            <a>
+                                <div id="userName"></div>
+                            </a>
+                            <li id="user"></li>
+                            <li>
+                                <button onclick="loadTickets()" id="profile_button" class="button">Moje nahlášené závady
+                                </button>
+                            </li>
+                            <li>
+                                <button onclick="editProfile()" id="edit_profile_button" class="button">Změna profilu
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="user_profile">
+            <div id="loadUserPageAl"></div>
+        </section>
+    </div>
+
+</main>
+<div id="overlay" class="ease"></div>
+<footer>
+    <div id="license">
+        <p><b>GoalDiggers</b> | Copyright 2022</p>
+    </div>
+</footer>
+
+<script>
+    const overlay = document.getElementById('overlay')
+
+    function getModal(modal_id) {
+        const modal = document.querySelector(modal_id)
+        openModal(modal)
+    }
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal_u.active')
+        modals.forEach(modal => {
+            closeModal(modal)
+        })
+    })
+
+    function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
+    }
+</script>
+</body>
+<script src="src/user_profile.js"></script>
+</html>

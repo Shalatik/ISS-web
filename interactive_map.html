@@ -1,0 +1,190 @@
+<!--
+  -- File: interactive_map.html
+  -- Author: Jakub Julius Šmýkal (xsmyka01)
+  -- Subject: ITU
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map Page</title>
+    <link rel="stylesheet" href="src/map_style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+</head>
+<body>
+<nav id="navigation-desktop">
+    <div class="content">
+        <ul id="bar_list">
+            <li><a href="index.html">Hlavní stránka</a></li>
+            <li><a href="interactive_map.html">Mapa závad</a></li>
+            <li><a href="index.html#about_ref">O nás</a></li>
+            <li><a href="index.html#map_ref">Nahlásit problém</a></li>
+            <li><a href="index.html#stats_ref">Štatistiky</a></li>
+            <li><a href="index.html#contact_ref">Kontakty</a></li>
+            <button class="hide_btn" id="logout_btn" type="submit" onclick="logout()">Odhlásit se</button>
+            <button class="hide_btn" id="profile_btn" type="submit" onclick="location.href='user_profile.html'">Zobrazit profil</button>
+            <button class="hide_btn" id="register_btn" type="submit" data-modal-target="#register_form">Registrovať sa</button>
+            <button class="hide_btn" id="login_btn" type="submit" data-modal-target="#login_form">Přihlásit se</button>
+        </ul>
+    </div>
+</nav>
+<div id="map_nav">
+    <div class="content">
+        <button id="categories_btn" onclick="open_filter_menu('categories_list', 'categories_img')"><img id="categories_img" src="src/pictures/list_closed.png" title="list_closed"><p>Kategórie</p></button>
+        <button id="condition_btn" onclick="open_filter_menu('conditions_list','condition_img')"><img id="condition_img" src="src/pictures/list_closed.png" title="list_closed"><p>Stav</p></button>
+        <button id="sort_by_btn" onclick="open_filter_menu('sort_list','sort_by_img')"><img id="sort_by_img" src="src/pictures/list_closed.png" title="list_closed"><p id="sort_text">Zoradené podľa: Názvu A-Z</p></button>
+        <button id="reset_btn" onclick="reset_filters()"><p>Resetovať filtre</p></button>
+    </div>
+</div>
+
+
+<div id="login_id">
+    <div class="modal ease" id="login_form">
+        <div class="modal-header">
+            <div class="title">Prosím prihláste sa</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="form_login">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email"><br>
+                <label for="password">Heslo</label>
+                <input type="password" name="password" id="password" placeholder="Heslo"><br>
+                <button type="submit" data-close-button onclick="login()">Přihlásit se</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="register_id">
+    <div class="modal ease" id="register_form">
+        <div class="modal-header">
+            <div class="title">Registrácia</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="form_register">
+                <label id="name_lab" for="name_reg">Meno</label>
+                <input type="text" name="name_reg" id="name_reg" placeholder="Meno">
+                <label id="surename_lab" for="surname_reg">Priezvisko</label>
+                <input type="text" name="surname_reg" id="surname_reg" placeholder="Priezvisko">
+                <label id="address_lab" for="address_reg">Addresa</label>
+                <input type="text" name="address" id="address_reg" placeholder="Addresa">
+                <label id="date_lab" for="date_reg">Dátum narodenia</label>
+                <input type="date" name="date_reg" id="date_reg" placeholder="Dátum narodenia">
+                <label id="email_lab" for="email_reg">Email</label>
+                <input type="email" name="email" id="email_reg" placeholder="Email">
+                <label id="pwd_lab" for="password_reg">Heslo</label>
+                <input type="password" name="password" id="password_reg" placeholder="********">
+                <label id="pwd2_lab" for="password_reg2">Potvrdenie hesla</label>
+                <input type="password" name="password" id="password_reg2" placeholder="********">
+                <div id="news">
+                    <input id="news_reg" type="checkbox">
+                    <label id="news_lab" for="news_reg">Chci dostávat novinky o mých nahlášených ticketech.</label>
+                </div>
+                <button id="reg_btn" data-close-button type="submit">Registrovať sa</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="background-blur">
+
+</div>
+
+<div id="overlay" class="ease"></div>
+
+<div class="content">
+    <div id="ticket_detail">
+        <div id="ticket_info">
+        </div>
+        <div id="comment_list">
+        </div>
+        <div id="add_comment" class="hide_btn">
+            <form name="comment_form" method="GET">
+                <div>
+                    <textarea name="comment_text" id="comment_text" placeholder="Sem napíšte komentár.." required></textarea>
+                    <input type="button" name="comment_button" id="comment_button" value="Pridať komentár">
+                </div>
+            </form>
+        </div >
+    </div>
+
+    <div id="categories_list" class="hidden_list">
+        <button class="selected_filter" id="Problémy na cestách" onclick="set_filter('Problémy na cestách')"><p>Problémy na cestách</p></button>
+        <button class="selected_filter" id="Lavičky" onclick="set_filter('Lavičky')"><p>Lavičky</p></button>
+        <button class="selected_filter" id="Nelegálne skládky" onclick="set_filter('Nelegálne skládky')"><p>Nelegálne skládky</p></button>
+        <button class="selected_filter" id="Parky a zeleň" onclick="set_filter('Parky a zeleň')"><p>Parky a zeleň</p></button>
+        <button class="selected_filter" id="Opustené vozidlá" onclick="set_filter('Opustené vozidlá')"><p>Opustené vozidlá</p></button>
+        <button class="selected_filter" id="Detské ihriská" onclick="set_filter('Detské ihriská')"><p>Detské ihriská</p></button>
+        <button class="selected_filter" id="Vandalizmus" onclick="set_filter('Vandalizmus')"><p>Vandalizmus</p></button>
+        <button class="selected_filter" id="Ostatné" onclick="set_filter('Ostatné')"><p>Ostatné</p></button>
+    </div>
+
+    <div id="conditions_list" class="hidden_list">
+        <button class="selected_filter" id="Aktuálne riešené" onclick="set_filter('Aktuálne riešené')"><p>Aktuálne riešené</p></button>
+        <button class="selected_filter" id="Vyriešené" onclick="set_filter('Vyriešené')"><p>Vyriešené</p></button>
+        <button class="selected_filter" id="Prijaté" onclick="set_filter('Prijaté')"><p>Prijaté</p></button>
+    </div>
+
+    <div id="sort_list" class="hidden_list">
+        <button id="name_asc" class="selected_filter" onclick="set_sort('name_asc')"><p>Názvu A-Z</p></button>
+        <button id="name_desc" onclick="set_sort('name_desc')"><p>Názvu Z-A</p></button>
+        <button id="age_asc" onclick="set_sort('age_asc')"><p>Najnovších</p></button>
+        <button id="age_desc" onclick="set_sort('age_desc')"><p>Najstarších</p></button>
+    </div>
+
+    <main id="map_main">
+        <div id="map_div">
+            <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+            <script src="src/interactive_map.js"></script>
+            <script src="src/login.js"></script>
+        </div>
+        <div id="ticket_list">
+
+        </div>
+    </main>
+</div>
+
+<script>
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            openModal(modal)
+        })
+    })
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closeModal(modal)
+        })
+    })
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        })
+    })
+
+    function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!--
+  -- File: report.html
+  -- Author: Milan Hrabovský (xhrabo15), Simona Češková (xcesko00)
+  -- Subject: ITU
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="src/report.css">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="src/report.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<nav id="navigation-desktop">
+    <div class="content">
+        <ul>
+            <li><a type="sumbit" data-modal-target="#hl_link_form_1">Hlavní stránka</a></li>
+            <li><a type="sumbit" data-modal-target="#hl_link_form_9">Mapa závad</a></li>
+            <li><a type="sumbit" data-modal-target="#hl_link_form_2">O nás</a></li>
+            <li><a type="sumbit" data-modal-target="#hl_link_form_3">Nahlásit problém</a></li>
+            <li><a type="sumbit" data-modal-target="#hl_link_form_4">Štatistiky</a></li>
+            <li><a type="sumbit" data-modal-target="#hl_link_form_5">Kontakty</a></li>
+            <button id="logout_btn" type="button" data-modal-target="#hl_link_form_6">Odhlásit se</button>
+            <button id="show_btn" type="button" data-modal-target="#hl_link_form_7">Zobrazit profil</button>
+        </ul>
+    </div>
+</nav>
+<div id="nav-place">
+    <nav id="navigation-desktop2">
+        <div class="content">
+            <div id="bar_list2">
+                <a href="index.html" class="active">Hlavní stránka</a>
+                <a href="interactive_map.html">Mapa závad</a>
+                <a href="index.html#about_ref">O nás</a>
+                <a href="index.html#map_ref">Nahlásit problém</a>
+                <a href="index.html#stats_ref">Štatistiky</a>
+                <a href="index.html#contact_ref">Kontakty</a>
+                <button onclick="loadTickets()" id="profile_button2">Moje nahlášené závady</button>
+                <button onclick="editProfile()" id="edit_profile_button2">Změna profilu</button>
+                <button type="submit" onclick="loadTickets()">Zobrazit profil</button>
+                <button type="submit" onclick="log_out()">Odhlásit se</button>
+            </div>
+        </div>
+        <a href="javascript:void(0);" class="icon" onClick="showMobileNav()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </nav>
+</div>
+
+<!--
+  -- start here
+  -- Author: Simona Češková (xcesko00)
+-->
+<section id="no-stats">
+    <a class="anchor" id="stats_ref"></a>
+    <div class="content">
+        <div class="modal ease link" id="hl_link_form_1">
+            <div class="modal-header">
+                <div class="title">Chcete opravdu odejít?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="location.href='index.html'">Odejít a
+                    zahodit změny
+                </button>
+            </div>
+        </div>
+        <div class="modal ease link" id="hl_link_form_9">
+            <div class="modal-header">
+                <div class="title">Chcete opravdu odejít?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="location.href='interactive_map.html'">Odejít a
+                    zahodit změny
+                </button>
+            </div>
+        </div>
+        <div class="modal ease link" id="hl_link_form_2">
+            <div class="modal-header">
+                <div class="title">Chcete opravdu odejít?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="location.href='index.html#about_ref'">
+                    Odejít a
+                    zahodit změny
+                </button>
+            </div>
+        </div>
+        <div class="modal ease link" id="hl_link_form_3">
+            <div class="modal-header">
+                <div class="title">Chcete opravdu odejít?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="location.href='index.html#map_ref'">
+                    Odejít a
+                    zahodit změny
+                </button>
+            </div>
+        </div>
+        <div class="modal ease link" id="hl_link_form_4">
+            <div class="modal-header">
+                <div class="title">Chcete opravdu odejít?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="location.href='index.html#stats_ref'">
+                    Odejít a
+                    zahodit změny
+                </button>
+            </div>
+        </div>
+        <div class="modal ease link" id="hl_link_form_5">
+            <div class="modal-header">
+                <div class="title">Chcete opravdu odejít?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="location.href='index.html#contact_ref'">
+                    Odejít a
+                    zahodit změny
+                </button>
+            </div>
+        </div>
+        <div class="modal ease link" id="hl_link_form_6">
+            <div class="modal-header">
+                <div class="title">Chcete se chcete odhlásit?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="log_out()">
+                    Odhlásit se a odejít
+                </button>
+            </div>
+        </div>
+        <div class="modal ease link" id="hl_link_form_7">
+            <div class="modal-header">
+                <div class="title">Chcete opravdu odejít?</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button data-close-button class="close-button">Pokračovat v hlášení</button>
+                <button data-close-button class="close-button" onClick="location.href='user_profile.html#about_ref'">
+                    Odejít a
+                    zahodit změny
+                </button>
+            </div>
+        </div>
+        <div id="overlay" class="ease"></div>
+        <script src="src/main_page.js"></script>
+    </div>
+</section>
+<!--
+  -- end here
+  -- Author: Simona Češková (xcesko00)
+-->
+
+
+<main>
+
+    <script>window.onload = function () {
+        reportFirst();
+    }
+    </script>
+
+    <div id="report_part"></div>
+
+</main>
+<footer id="report_footer">
+    <div id="license">
+        <p><b>GoalDiggers</b> | Copyright 2022</p>
+    </div>
+</footer>
+</body>
+</html>
